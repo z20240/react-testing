@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Suspense } from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+
+import { renderRoutes } from 'react-router-config';
+import { BrowserRouter, HashRoute, Switch } from 'react-router-dom';
+import router from './router';
+
+const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            {/** https://blog.csdn.net/roamingcode/article/details/95235079 */}
+            {/** child routes won't render without this */}
+            {/** 渲染匹配路徑的路有組件 */}
+            <Suspense fallback={loading()}>
+                { renderRoutes(router) }
+            </Suspense>
+        </BrowserRouter>
+    );
 }
 
 export default App;
