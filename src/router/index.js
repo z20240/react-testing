@@ -1,31 +1,19 @@
 import React from 'react';
 
-const Dashboard = React.lazy(() => import('../views/dashboard'));
-const ErrorPage = React.lazy(() => import('../views/errorPage'));
-const NestPage = React.lazy(() => import('../views/nestPage'));
-const NestPageLevel2 = React.lazy(() => import('../views/nestPage/Level2'));
+import nested from './modules/nested'
 
 export default [
     {
         path: '/',
         name: 'Dashboard',
         exact: true,
-        component: Dashboard
+        component: React.lazy(() => import('../views/dashboard'))
     },
     {
         path: '/404',
         name: '404',
-        component: ErrorPage
+        exact: true,
+        component: React.lazy(() => import('../views/404'))
     },
-    {
-        path: '/nest',
-        name: 'nest',
-        component: NestPage,
-        routes: [
-            {
-                path: 'nest/level2',
-                component: NestPageLevel2
-            }
-        ]
-    }
+    nested,
 ];
