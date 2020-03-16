@@ -15,5 +15,11 @@ export default [
         exact: true,
         component: React.lazy(() => import('../views/404'))
     },
+    {
+        path: '/login',
+        name: 'Login',
+        exact: true,
+        component: React.lazy(() => import('../views/login'))
+    },
     nested,
 ];
