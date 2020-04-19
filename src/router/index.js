@@ -21,5 +21,11 @@ export default [
         exact: true,
         component: React.lazy(() => import('../views/login'))
     },
-    nested,
+    {   // any page with layout need put in here
+        name: 'Layout',
+        component: React.lazy(() => import('../layout')),
+        routes: [
+            nested
+        ]
+    }
 ];
